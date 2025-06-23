@@ -1,0 +1,128 @@
+:root {
+    --blue-dark: #0a3d62;
+    --blue-light: #74b9ff;
+    --text-dark: #2c3e50;
+    --white: #ffffff;
+}
+
+/* General */
+body {
+    background: linear-gradient(135deg, var(--blue-light), #dbeeff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--blue-dark) !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #fff !important;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.navbar .nav-link:hover {
+    color: #e0e0e0 !important;
+    text-decoration: underline;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Dashboard & Cards */
+.dashboard-title {
+    color: var(--text-dark);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.menu-card {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: var(--white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: scale(1.05);
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    color: var(--blue-dark);
+}
+
+.menu-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-top: 0.75rem;
+}
+
+/* Riwayat Absensi */
+.table thead th {
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #eef6ff;
+}
+
+.table td,
+.table th {
+    font-size: 0.95rem;
+}
+
+/* QR Code Scan */
+.qr-box {
+    background-color: #fff;
+    border: 2px dashed var(--blue-dark);
+}
+
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--blue-dark);
+    border-color: var(--blue-dark);
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-light);
+    border-color: var(--blue-light);
+}
+
+/* Responsive Tweaks */
+@media (max-width: 576px) {
+    .dashboard-title {
+        font-size: 1.5rem;
+    }
+
+    .menu-icon {
+        font-size: 2rem;
+    }
+
+    .menu-title {
+        font-size: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+}
