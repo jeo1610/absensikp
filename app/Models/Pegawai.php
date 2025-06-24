@@ -15,6 +15,8 @@ class Pegawai extends Model
         'nip',
         'email',
         'namaLengkap',
+        'jabatan',
+        'bidang',
         'password',
     ];
     protected $hidden = [

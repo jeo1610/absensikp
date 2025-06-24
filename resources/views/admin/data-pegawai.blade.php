@@ -23,8 +23,10 @@
                         <tr>
                             <th style="width: 20%">NIP</th>
                             <th style="width: 30%">Nama Lengkap</th>
-                            <th style="width: 30%">Email</th>
-                            <th style="width: 20%">Aksi</th>
+                            <th style="width: 10%">Jabatan</th>
+                            <th style="width: 10%">Bidang</th>
+                            <th style="width: 20%">Email</th>
+                            <th style="width: 10%">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +34,8 @@
                             <tr>
                                 <td class="text-center fw-medium">{{ $row->nip }}</td>
                                 <td class="text-capitalize">{{ $row->namaLengkap }}</td>
+                                <td class="text-capitalize">{{ $row->jabatan }}</td>
+                                <td class="text-capitalize">{{ $row->bidang }}</td>
                                 <td>{{ $row->email }}</td>
                                 <td class="text-center">
                                     <a href="/admin/data-pegawai/edit/{{ $row->nip }}"

@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             'nip' => '123456789012345678',
             'email' => 'pegawai1@example.com',
             'namaLengkap' => 'Budi Santoso',
+            'jabatan' => 'Kepala Dinas',
+            'bidang' => 'DPM',
             'password' => Hash::make('password'),
         ]);
 
@@ -31,6 +33,8 @@ class DatabaseSeeder extends Seeder
             'nip' => '123456789012345679',
             'email' => 'pegawai2@example.com',
             'namaLengkap' => 'Siti Aminah',
+            'jabatan' => 'Kepala Dinas',
+            'bidang' => 'Sekretariat',
             'password' => Hash::make('password'),
         ]);
 

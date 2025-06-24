@@ -63,12 +63,14 @@
     <table>
         <thead>
             <tr>
-                <th>No</th>
-                <th>NIP</th>
-                <th>Nama Lengkap</th>
-                <th>Jenis Absensi</th>
-                <th>Tanggal</th>
-                <th>Jam</th>
+                <th style="width: 5%">No</th>
+                <th style="width: 15%">NIP</th>
+                <th style="width: 20%">Nama Lengkap</th>
+                <th style="width: 15%">Jabatan</th>
+                <th style="width: 15%">Bidang</th>
+                <th style="width: 10%">Jenis Absensi</th>
+                <th style="width: 10%">Tanggal</th>
+                <th style="width: 10%">Jam</th>
             </tr>
         </thead>
         <tbody>
@@ -77,6 +79,8 @@
                     <td>{{ $i + 1 }}</td>
                     <td>{{ $data->pegawai->nip ?? '-' }}</td>
                     <td style="text-align: left;">{{ $data->pegawai->namaLengkap ?? '-' }}</td>
+                    <td style="text-align: left;">{{ $data->pegawai->jabatan ?? '-' }}</td>
+                    <td style="text-align: left;">{{ $data->pegawai->bidang ?? '-' }}</td>
                     <td>{{ $data->absensi->jenisAbsensi ?? '-' }}</td>
                     <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($data->created_at)->format('H:i:s') }}</td>

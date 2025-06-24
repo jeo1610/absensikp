@@ -47,11 +47,13 @@
                 <table class="table table-hover table-striped table-bordered align-middle shadow-sm">
                     <thead class="table-primary text-center">
                         <tr>
-                            <th style="width: 10%">NIP</th>
+                            <th style="width: 15%">NIP</th>
                             <th style="width: 25%">Nama Lengkap</th>
-                            <th style="width: 20%">Jenis Absensi</th>
-                            <th style="width: 20%">Tanggal</th>
-                            <th style="width: 20%">Jam</th>
+                            <th style="width: 15%">Jabatan</th>
+                            <th style="width: 15%">Bidang</th>
+                            <th style="width: 10%">Jenis Absensi</th>
+                            <th style="width: 10%">Tanggal</th>
+                            <th style="width: 10%">Jam</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +61,8 @@
                             <tr>
                                 <td class="text-center">{{ $data->pegawai->nip ?? '-' }}</td>
                                 <td>{{ $data->pegawai->namaLengkap ?? '-' }}</td>
+                                <td>{{ $data->pegawai->jabatan ?? '-' }}</td>
+                                <td>{{ $data->pegawai->bidang ?? '-' }}</td>
                                 <td class="text-center">{{ $data->absensi->jenisAbsensi ?? '-' }}</td>
                                 <td class="text-center">{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}
                                 </td>
@@ -67,7 +71,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center text-muted py-3">Tidak ada data absensi tersedia</td>
+                                <td colspan="7" class="text-center text-muted py-3">Tidak ada data absensi tersedia</td>
                             </tr>
                         @endforelse
                     </tbody>

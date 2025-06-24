@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('nip')->primary();
             $table->string('email')->unique();
             $table->string('namaLengkap');
+            $table->string('jabatan');
+            $table->string('bidang');
             $table->string('password');
             $table->timestamps();
         });

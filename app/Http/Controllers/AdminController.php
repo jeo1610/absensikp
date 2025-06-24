@@ -142,6 +142,8 @@ class AdminController extends Controller
             'nip' => 'required|unique:pegawai,nip|digits:18',
             'namaLengkap' => 'required|string|max:100',
             'email' => 'required|email|unique:pegawai,email',
+            'jabatan' => 'required|string|max:100',
+            'bidang' => 'required|string|max:100',
             'password' => 'required|min:8'
         ]);
         $validasi['password'] = Hash::make($validasi['password']);
@@ -172,7 +174,9 @@ class AdminController extends Controller
                 'email',
                 Rule::unique('pegawai', 'email')->ignore($pegawai->nip, 'nip')
             ],
-            'password' => 'nullable|min:8'
+            'password' => 'nullable|min:8',
+            'jabatan' => 'required|string|max:100',
+            'bidang' => 'required|string|max:100',
         ]);
         if (empty($request->input('password'))) {
             $validasi['password'] = $pegawai->password;

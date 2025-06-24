@@ -19,8 +19,7 @@
 
             <div class="mb-4">
                 <label for="namaLengkap" class="form-label text-dark fw-semibold">Nama Lengkap</label>
-                <input type="text" id="namaLengkap" name="namaLengkap"
-                    class="form-control rounded-3 px-4 py-2 border-2"
+                <input type="text" id="namaLengkap" name="namaLengkap" class="form-control rounded-3 px-4 py-2 border-2"
                     style="background-color: #ffffff; border-color: #cccccc;"
                     value="{{ old('namaLengkap', $pegawai->namaLengkap) }}" placeholder="Masukkan Nama Lengkap" required>
             </div>
@@ -30,6 +29,20 @@
                 <input type="email" id="email" name="email" class="form-control rounded-3 px-4 py-2 border-2"
                     style="background-color: #ffffff; border-color: #cccccc;" value="{{ old('email', $pegawai->email) }}"
                     placeholder="Masukkan Email Aktif" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="jabaran" class="form-label text-dark fw-semibold">Jabatan</label>
+                <input type="text" id="jabatan" name="jabatan" class="form-control rounded-3 px-4 py-2 border-2"
+                    style="background-color: #ffffff; border-color: #cccccc;"
+                    value="{{ old('jabatan', $pegawai->jabatan) }}" placeholder="Masukkan Jabatan" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="bidang" class="form-label text-dark fw-semibold">Bidang</label>
+                <input type="text" id="bidang" name="bidang" class="form-control rounded-3 px-4 py-2 border-2"
+                    style="background-color: #ffffff; border-color: #cccccc;"
+                    value="{{ old('bidang', $pegawai->bidang) }}" placeholder="Masukkan Bidang" required>
             </div>
 
             <div class="mb-5">
