@@ -6,7 +6,7 @@
             <i class="fas fa-user-shield me-2"></i>Form Tambah Admin
         </h4>
 
-        <form action="{{ url('/admin/data-admin/kirim') }}" method="POST" autocomplete="off">
+        <form action="/admin/data-admin/kirim" method="POST" autocomplete="off">
             @csrf
 
             <div class="mb-4">
@@ -32,7 +32,7 @@
             </div>
 
             <div class="d-flex justify-content-between">
-                <a href="{{ url('/admin/data-admin') }}" class="btn btn-outline-secondary rounded-pill px-4">
+                <a href="/admin/data-admin" class="btn btn-outline-secondary rounded-pill px-4">
                     <i class="fas fa-arrow-left me-1"></i>Kembali
                 </a>
                 <button type="submit" class="btn btn-primary rounded-pill px-4 shadow">

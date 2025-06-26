@@ -21,6 +21,7 @@ return new class extends Migration
         Schema::create('substansi', function (Blueprint $table) {
             $table->id('idSubstansi');
             $table->string('namaSubstansi');
+            $table->timestamps();
         });
 
         Schema::create('pegawai', function (Blueprint $table) {
