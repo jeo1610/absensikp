@@ -58,8 +58,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('melakukan');
-        Schema::dropIfExists('absensi');
+        Schema::dropIfExists('absen');
         Schema::dropIfExists('pegawai');
+        Schema::dropIfExists('substansi');
         Schema::dropIfExists('admin');
     }
 };
