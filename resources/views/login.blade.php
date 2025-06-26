@@ -31,6 +31,42 @@
             padding: 1rem;
         }
 
+        /* Marquee */
+        .marquee-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            background-color: var(--blue-dark);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .marquee-container {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 18s linear infinite;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--white);
+            padding: 0.75rem 0;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
         .card {
             border-radius: 1rem;
             background-color: var(--white);
@@ -39,6 +75,19 @@
             max-width: 420px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             padding: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h4 {
@@ -56,6 +105,10 @@
             background-color: #f8fbff;
             border-color: #ced4da;
             transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control::placeholder {
+            color: #a0aec0;
         }
 
         .form-control:focus,
@@ -94,7 +147,6 @@
         .btn-primary:hover {
             background-color: var(--blue-light);
             border-color: var(--blue-light);
-            color: var(--white);
         }
 
         .btn-secondary {
@@ -106,14 +158,14 @@
         .btn-secondary:hover {
             background-color: var(--blue-dark);
             border-color: var(--blue-dark);
-            color: var(--white);
         }
 
         .alert-danger {
             background-color: #ffe5e5;
             border-color: #ffcccc;
             color: #a94442;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            border-radius: 0.5rem;
         }
 
         @media (max-width: 576px) {
@@ -122,16 +174,24 @@
                 margin-bottom: 0.5rem;
             }
 
-            .d-flex.justify-content-between {
-                flex-direction: column;
-                gap: 0.5rem;
+            .d-grid.gap-2 {
+                gap: 0.75rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="card">
+    <div class="marquee-wrapper">
+        <div class="marquee-container">
+            <span class="marquee-text">
+                Selamat datang di Sistem Absensi Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu!
+                Silakan lakukan absensi Anda.
+            </span>
+        </div>
+    </div>
+
+    <div class="card mt-5">
         <h4 class="text-center mb-4">Login Sistem</h4>
 
         @if (session('error'))

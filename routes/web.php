@@ -8,10 +8,8 @@ use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CekLogin;
 
-Route::get('/', [BerandaController::class, 'beranda'])->name('beranda');
-
 // Halaman Login
-Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
+Route::get('/', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.process');
 
 // Logout

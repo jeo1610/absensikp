@@ -19,7 +19,7 @@ class CekLogin
     public function handle(Request $request, Closure $next, $role = null)
     {
         if (!Session::has('logged_in')) {
-            return redirect('/login')->with('error', 'Silakan login terlebih dahulu.');
+            return redirect('/')->with('error', 'Silakan login terlebih dahulu.');
         }
 
         if ($role && Session::get('role') !== $role) {

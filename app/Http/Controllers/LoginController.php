@@ -32,7 +32,7 @@ class LoginController extends Controller
                 Session::put('logged_in', true);
                 Session::put('role', 'admin');
                 Session::put('user', $admin);
-                return redirect('/admin/dashboard');
+                return redirect('/admin/dashboard')->with('success', 'Selamat datang, ' . $admin->username);
             }
         }
         if ($role === 'pegawai') {
@@ -41,7 +41,7 @@ class LoginController extends Controller
                 Session::put('logged_in', true);
                 Session::put('role', 'pegawai');
                 Session::put('user', $pegawai);
-                return redirect('/pegawai/dashboard');
+                return redirect('/pegawai/dashboard')->with('success', 'Selamat datang, ' . $pegawai->namaLengkap);
             }
         }
         return redirect()->back();

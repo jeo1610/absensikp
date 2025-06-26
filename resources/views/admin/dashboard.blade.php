@@ -3,6 +3,18 @@
 @section('content')
     <h2 class="dashboard-title">Selamat Datang, Admin!</h2>
 
+    @if (session('error'))
+        <div class="alert alert-danger text-center mt-3 mb-0 rounded-0">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if (session('success'))
+        <div class="alert alert-success text-center mt-3 mb-0 rounded-0">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row g-4">
         <div class="col-md-4">
             <a href="/admin/data-admin" class="text-decoration-none">
