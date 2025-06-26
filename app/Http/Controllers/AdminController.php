@@ -21,31 +21,31 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('title'));
     }
 
-    public function laporan(Request $request)
-    {
-        $title = 'Laporan Absensi';
+    // public function laporan(Request $request)
+    // {
+    //     $title = 'Laporan Absensi';
 
-        $query = Melakukan::with(['pegawai', 'absensi'])->orderBy('created_at', 'desc');
+    //     $query = Melakukan::with(['pegawai', 'absensi'])->orderBy('created_at', 'desc');
 
-        if ($request->filled('tanggal_mulai') && $request->filled('tanggal_selesai')) {
-            $start = Carbon::parse($request->tanggal_mulai)->startOfDay();
-            $end = Carbon::parse($request->tanggal_selesai)->endOfDay();
-            $query->whereBetween('created_at', [$start, $end]);
-        }
+    //     if ($request->filled('tanggal_mulai') && $request->filled('tanggal_selesai')) {
+    //         $start = Carbon::parse($request->tanggal_mulai)->startOfDay();
+    //         $end = Carbon::parse($request->tanggal_selesai)->endOfDay();
+    //         $query->whereBetween('created_at', [$start, $end]);
+    //     }
 
-        if ($request->filled('jenis_absensi')) {
-            $query->whereHas('absensi', function ($q) use ($request) {
-                $q->where('jenisAbsensi', $request->jenis_absensi);
-            });
-        }
+    //     if ($request->filled('jenis_absensi')) {
+    //         $query->whereHas('absensi', function ($q) use ($request) {
+    //             $q->where('jenisAbsensi', $request->jenis_absensi);
+    //         });
+    //     }
 
-        $laporan = $query->get();
+    //     $laporan = $query->get();
 
-        // Ambil daftar jenis absensi unik untuk dropdown
-        $listJenisAbsensi = Absensi::select('jenisAbsensi')->distinct()->pluck('jenisAbsensi');
+    //     // Ambil daftar jenis absensi unik untuk dropdown
+    //     $listJenisAbsensi = Absensi::select('jenisAbsensi')->distinct()->pluck('jenisAbsensi');
 
-        return view('admin.laporan', compact('title', 'laporan', 'listJenisAbsensi'));
-    }
+    //     return view('admin.laporan', compact('title', 'laporan', 'listJenisAbsensi'));
+    // }
 
     public function cetak(Request $request)
     {

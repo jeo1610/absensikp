@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('password');
             $table->timestamps();
         });
+        
+        Schema::create('substansi', function (Blueprint $table) {
+            $table->id('idSubstansi');
+            $table->string('namaSubstansi');
+        });
 
         Schema::create('pegawai', function (Blueprint $table) {
             $table->string('nip')->primary();
@@ -25,23 +30,25 @@ return new class extends Migration
             $table->string('jabatan');
             $table->string('bidang');
             $table->string('password');
+            $table->unsignedBigInteger('idSubstansi');
+            $table->foreign('idSubstansi')->references('idSubstansi')->on('substansi');
             $table->timestamps();
         });
 
-        Schema::create('absensi', function (Blueprint $table) {
-            $table->id('idAbsensi');
-            $table->string('jenisAbsensi');
-            $table->boolean('status_qr')->default(false);
+        Schema::create('absen', function (Blueprint $table) {
+            $table->id('idAbsen');
+            $table->string('jenisAbsen');
+            $table->boolean('statusQr')->default(false);
             $table->timestamps();
         });
 
         Schema::create('melakukan', function (Blueprint $table) {
             $table->id('id');
             $table->string('nip');
-            $table->unsignedBigInteger('idAbsensi');
-            $table->timestamps();
+            $table->unsignedBigInteger('idAbsen');
             $table->foreign('nip')->references('nip')->on('pegawai');
-            $table->foreign('idAbsensi')->references('idAbsensi')->on('absensi');
+            $table->foreign('idAbsen')->references('idAbsen')->on('absen');
+            $table->timestamps();
         });
     }
 

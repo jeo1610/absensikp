@@ -26,8 +26,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/admin/data-substansi">
+                        <i class="fas fa-building me-1"></i>Data Substansi
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/admin/data-pegawai">
                         <i class="fas fa-user-clock me-1"></i>Data Pegawai
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/data-absen">
+                        <i class="fas fa-table me-1"></i>Data Absen
                     </a>
                 </li>
                 <li class="nav-item">

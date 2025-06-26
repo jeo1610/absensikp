@@ -14,11 +14,11 @@ class Melakukan extends Model
     protected $keyType = 'int';
     protected $fillable = [
         'nip',
-        'idAbsensi',
+        'idAbsen',
     ];
     public function absensi()
     {
-        return $this->belongsTo(Absensi::class, 'idAbsensi', 'idAbsensi');
+        return $this->belongsTo(Absen::class, 'idAbsen', 'idAbsensi');
     }
     public function pegawai()
     {

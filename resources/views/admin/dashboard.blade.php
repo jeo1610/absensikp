@@ -3,19 +3,21 @@
 @section('content')
     <h2 class="dashboard-title">Selamat Datang, Admin!</h2>
 
-    @if (session('error'))
-        <div class="alert alert-danger text-center mt-3 mb-0 rounded-0">
-            {{ session('error') }}
-        </div>
-    @endif
+    <div class="text-center mb-4">
+        @if (session('error'))
+            <div class="alert alert-danger text-center mt-3 mb-0 rounded">
+                {{ session('error') }}
+            </div>
+        @endif
+    
+        @if (session('success'))
+            <div class="alert alert-success text-center mt-3 mb-0 rounded">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
 
-    @if (session('success'))
-        <div class="alert alert-success text-center mt-3 mb-0 rounded-0">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="row g-4">
+    <div class="row g-4 text-center">
         <div class="col-md-4">
             <a href="/admin/data-admin" class="text-decoration-none">
                 <div class="menu-card text-center">
@@ -26,10 +28,28 @@
         </div>
 
         <div class="col-md-4">
+            <a href="/admin/data-substansi" class="text-decoration-none">
+                <div class="menu-card text-center">
+                    <i class="fas fa-building menu-icon"></i>
+                    <div class="menu-title">Data Substansi</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
             <a href="/admin/data-pegawai" class="text-decoration-none">
                 <div class="menu-card text-center">
                     <i class="fas fa-user-clock menu-icon"></i>
                     <div class="menu-title">Data Pegawai</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a href="/admin/data-absen" class="text-decoration-none">
+                <div class="menu-card text-center">
+                    <i class="fas fa-table menu-icon"></i>
+                    <div class="menu-title">Data Absen</div>
                 </div>
             </a>
         </div>

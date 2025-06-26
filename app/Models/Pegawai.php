@@ -13,6 +13,7 @@ class Pegawai extends Model
     public $timestamps = true;
     protected $fillable = [
         'nip',
+        'idSubstansi',
         'email',
         'namaLengkap',
         'jabatan',
@@ -22,6 +23,10 @@ class Pegawai extends Model
     protected $hidden = [
         'password',
     ];
+    public function substansi()
+    {
+        return $this->belongsTo(Substansi::class, 'idSubstansi', 'idSubstansi');
+    }
     public function melakukan()
     {
         return $this->hasMany(Melakukan::class, 'nip', 'nip');
