@@ -208,7 +208,7 @@
             @endif
         </div>
 
-        <form action="{{ route('login.process') }}" method="POST">
+        <form action="/login" method="POST">
             @csrf
 
             <div class="mb-3">

@@ -2,18 +2,17 @@
 
 use App\Http\Controllers\AdminAbsensiController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CekLogin;
 
-// Halaman Login
-Route::get('/', [LoginController::class, 'showLogin'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.process');
+// Login
+Route::get('/', [LoginController::class, 'showLogin']);
+Route::post('/login', [LoginController::class, 'login']);
 
 // Logout
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout']);
 
 // Absensi
 Route::get('/absensi/qr-code', [AdminAbsensiController::class, 'qrcode'])->name('absensi.qr-code');
