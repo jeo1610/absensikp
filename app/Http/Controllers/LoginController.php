@@ -32,7 +32,7 @@ class LoginController extends Controller
                 Session::put('logged_in', true);
                 Session::put('role', 'admin');
                 Session::put('user', $admin);
-                return redirect('/admin/dashboard')->with('success', 'Selamat datang, ' . $admin->username);
+                return redirect('/admin/dashboard');
             } else {
                 return redirect()->back()->with('error', 'Username atau password salah.');
             }
@@ -43,7 +43,7 @@ class LoginController extends Controller
                 Session::put('logged_in', true);
                 Session::put('role', 'pegawai');
                 Session::put('user', $pegawai);
-                return redirect('/pegawai/dashboard')->with('success', 'Selamat datang, ' . $pegawai->namaLengkap);
+                return redirect('/pegawai/dashboard');
             } else {
                 return redirect()->back()->with('error', 'Username atau password salah.');
             }
