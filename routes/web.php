@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAbsensiController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DataAdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Route;
@@ -32,12 +33,12 @@ Route::middleware([CekLogin::class . ':admin'])->group(function () {
     Route::get('/reset-absensi', [AdminAbsensiController::class, 'resetAbsensi'])->name('absensi.reset');
 
     // admin
-    Route::get('/admin/data-admin', [AdminController::class, 'dataadmin'])->name('admin.data-admin');
-    Route::get('/admin/data-admin/tambah', [AdminController::class, 'tambahadmin'])->name('admin.tambah-data-admin');
-    Route::post('/admin/data-admin/kirim', [AdminController::class, 'kirimadmin']);
-    Route::get('/admin/data-admin/edit/{id}', [AdminController::class, 'editadmin'])->name('admin.edit-data-admin');
-    Route::post('/admin/data-admin/update', [AdminController::class, 'updateadmin']);
-    Route::get('/admin/data-admin/delete/{id}', [AdminController::class, 'deleteadmin']);
+    Route::get('/admin/data-admin', [DataAdminController::class, 'dataadmin'])->name('admin.data-admin');
+    Route::get('/admin/data-admin/tambah', [DataAdminController::class, 'tambahadmin'])->name('admin.tambah-data-admin');
+    Route::post('/admin/data-admin/kirim', [DataAdminController::class, 'kirimadmin']);
+    Route::get('/admin/data-admin/edit/{id}', [DataAdminController::class, 'editadmin'])->name('admin.edit-data-admin');
+    Route::post('/admin/data-admin/update', [DataAdminController::class, 'updateadmin']);
+    Route::get('/admin/data-admin/delete/{id}', [DataAdminController::class, 'deleteadmin']);
 
     // pegawai
     Route::get('/admin/data-pegawai', [AdminController::class, 'datapegawai'])->name('admin.data-pegawai');

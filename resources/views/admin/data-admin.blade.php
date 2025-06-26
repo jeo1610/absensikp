@@ -8,6 +8,20 @@
                 <h2 class="m-0 text-dark fw-semibold">Data Admin</h2>
             </div>
 
+            <div class="text-center mb-4">
+                @if (session('error'))
+                    <div class="alert alert-danger text-center mt-3 mb-0 rounded">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="alert alert-success text-center mt-3 mb-0 rounded">
+                        {{ session('success') }}
+                    </div>
+                @endif
+            </div>
+
             <div class="mb-3 d-flex justify-content-between">
                 <a href="/admin/data-admin/tambah" class="btn btn-primary">
                     <i class="fas fa-plus me-1"></i>Tambah Admin
