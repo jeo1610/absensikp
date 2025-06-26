@@ -33,6 +33,8 @@ class LoginController extends Controller
                 Session::put('role', 'admin');
                 Session::put('user', $admin);
                 return redirect('/admin/dashboard')->with('success', 'Selamat datang, ' . $admin->username);
+            } else {
+                return redirect()->back()->with('error', 'Username atau password salah.');
             }
         }
         if ($role === 'pegawai') {
@@ -42,6 +44,8 @@ class LoginController extends Controller
                 Session::put('role', 'pegawai');
                 Session::put('user', $pegawai);
                 return redirect('/pegawai/dashboard')->with('success', 'Selamat datang, ' . $pegawai->namaLengkap);
+            } else {
+                return redirect()->back()->with('error', 'Username atau password salah.');
             }
         }
         return redirect()->back();

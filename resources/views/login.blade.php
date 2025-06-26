@@ -194,9 +194,19 @@
     <div class="card mt-5">
         <h4 class="text-center mb-4">Login Sistem</h4>
 
-        @if (session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
+        <div class="text-center mb-4">
+            @if (session('error'))
+                <div class="alert alert-danger text-center mt-3 mb-0 rounded">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success text-center mt-3 mb-0 rounded">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
 
         <form action="{{ route('login.process') }}" method="POST">
             @csrf
