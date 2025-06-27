@@ -8,6 +8,20 @@
                 <h2 class="m-0 text-dark fw-semibold">Data Pegawai</h2>
             </div>
 
+            <div class="text-center mb-4">
+                @if (session('error'))
+                    <div class="alert alert-danger text-center mt-3 mb-0 rounded">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="alert alert-success text-center mt-3 mb-0 rounded">
+                        {{ session('success') }}
+                    </div>
+                @endif
+            </div>
+
             <div class="mb-3 d-flex justify-content-between">
                 <a href="/admin/data-pegawai/tambah" class="btn btn-primary">
                     <i class="fas fa-plus me-1"></i>Tambah Pegawai
@@ -21,10 +35,9 @@
                 <table class="table table-hover table-striped table-bordered align-middle shadow-sm">
                     <thead class="table-primary text-center">
                         <tr>
-                            <th style="width: 20%">NIP</th>
-                            <th style="width: 30%">Nama Lengkap</th>
-                            <th style="width: 10%">Jabatan</th>
-                            <th style="width: 10%">Bidang</th>
+                            <th style="width: 15%">NIP</th>
+                            <th style="width: 25%">Nama Lengkap</th>
+                            <th style="width: 20%">Jabatan</th>
                             <th style="width: 20%">Email</th>
                             <th style="width: 10%">Aksi</th>
                         </tr>
@@ -33,10 +46,9 @@
                         @forelse ($pegawai as $row)
                             <tr>
                                 <td class="text-center fw-medium">{{ $row->nip }}</td>
-                                <td class="text-capitalize">{{ $row->namaLengkap }}</td>
-                                <td class="text-capitalize">{{ $row->jabatan }}</td>
-                                <td class="text-capitalize">{{ $row->bidang }}</td>
-                                <td>{{ $row->email }}</td>
+                                <td class="text-center text-capitalize">{{ $row->namaLengkap }}</td>
+                                <td class="text-center text-capitalize">{{ $row->jabatan }}</td>
+                                <td class="text-center">{{ $row->email }}</td>
                                 <td class="text-center">
                                     <a href="/admin/data-pegawai/edit/{{ $row->nip }}"
                                         class="btn btn-sm btn-outline-primary me-1" title="Edit">
@@ -51,7 +63,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="text-center text-muted">Tidak ada data pegawai</td>
+                                <td colspan="5" class="text-center text-muted">Tidak ada data pegawai</td>
                             </tr>
                         @endforelse
                     </tbody>

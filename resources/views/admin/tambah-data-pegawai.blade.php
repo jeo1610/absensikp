@@ -31,17 +31,21 @@
             </div>
 
             <div class="mb-4">
+                <label for="idSubstansi" class="form-label text-dark fw-semibold">Substansi</label>
+                <select id="idSubstansi" name="idSubstansi" class="form-select rounded-3 px-4 py-2 border-2"
+                    style="background-color: #ffffff; border-color: #cccccc;" required>
+                    <option value="" disabled selected>Pilih Substansi</option>
+                    @foreach ($substansilist as $substansi)
+                        <option value="{{ $substansi->idSubstansi }}">{{ $substansi->namaSubstansi }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-4">
                 <label for="jabatan" class="form-label text-dark fw-semibold">Jabatan</label>
                 <input type="text" id="jabatan" name="jabatan" class="form-control rounded-3 px-4 py-2 border-2"
                     style="background-color: #ffffff; border-color: #cccccc;" value="{{ old('jabatan') }}"
                     placeholder="Masukkan Jabatan" required>
-            </div>
-
-            <div class="mb-4">
-                <label for="bidang" class="form-label text-dark fw-semibold">Bidang</label>
-                <input type="text" id="bidang" name="bidang" class="form-control rounded-3 px-4 py-2 border-2"
-                    style="background-color: #ffffff; border-color: #cccccc;" value="{{ old('bidang') }}"
-                    placeholder="Masukkan Bidang" required>
             </div>
 
             <div class="mb-5">

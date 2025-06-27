@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAbsensiController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataAdminController;
+use App\Http\Controllers\DataPegawaiController;
 use App\Http\Controllers\DataSubstansiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
@@ -50,12 +51,12 @@ Route::middleware([CekLogin::class . ':admin'])->group(function () {
     Route::get('/admin/data-substansi/delete/{id}', [DataSubstansiController::class, 'deletesubstansi']);
 
     // pegawai
-    Route::get('/admin/data-pegawai', [AdminController::class, 'datapegawai'])->name('admin.data-pegawai');
-    Route::get('/admin/data-pegawai/tambah', [AdminController::class, 'tambahpegawai'])->name('admin.tambah-data-pegawai');
-    Route::post('/admin/data-pegawai/kirim', [AdminController::class, 'kirimpegawai']);
-    Route::get('/admin/data-pegawai/edit/{id}', [AdminController::class, 'editpegawai'])->name('admin.edit-data-pegawai');
-    Route::post('/admin/data-pegawai/update', [AdminController::class, 'updatepegawai']);
-    Route::get('/admin/data-pegawai/delete/{id}', [AdminController::class, 'deletepegawai']);
+    Route::get('/admin/data-pegawai', [DataPegawaiController::class, 'datapegawai']);
+    Route::get('/admin/data-pegawai/tambah', [DataPegawaiController::class, 'tambahpegawai']);
+    Route::post('/admin/data-pegawai/kirim', [DataPegawaiController::class, 'kirimpegawai']);
+    Route::get('/admin/data-pegawai/edit/{id}', [DataPegawaiController::class, 'editpegawai']);
+    Route::post('/admin/data-pegawai/update', [DataPegawaiController::class, 'updatepegawai']);
+    Route::get('/admin/data-pegawai/delete/{id}', [DataPegawaiController::class, 'deletepegawai']);
 });
 
 // ====================

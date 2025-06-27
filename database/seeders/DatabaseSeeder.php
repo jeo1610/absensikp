@@ -21,27 +21,35 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        // Substansi::create([
-        //     'namaSubstansi' => 'Dinas Perhubungan',
-        // ]);
+        Substansi::create([
+            'namaSubstansi' => 'Dinas Perhubungan',
+        ]);
 
-        // Pegawai::create([
-        //     'nip' => '123456789012345678',
-        //     'email' => 'pegawai1@example.com',
-        //     'namaLengkap' => 'Budi Santoso',
-        //     'jabatan' => 'Kepala Dinas',
-        //     'bidang' => 'DPM',
-        //     'password' => Hash::make('password'),
-        // ]);
+        Substansi::create([
+            'namaSubstansi' => 'Dinas Kesehatan',
+        ]);
 
-        // Pegawai::create([
-        //     'nip' => '123456789012345679',
-        //     'email' => 'pegawai2@example.com',
-        //     'namaLengkap' => 'Siti Aminah',
-        //     'jabatan' => 'Kepala Dinas',
-        //     'bidang' => 'Sekretariat',
-        //     'password' => Hash::make('password'),
-        // ]);
+        Substansi::create([
+            'namaSubstansi' => 'Dinas Pendidikan',
+        ]);
+
+        Pegawai::create([
+            'nip' => '123456789012345678',
+            'email' => 'email1@example.com',
+            'namaLengkap' => 'Budi Santoso',
+            'jabatan' => 'Kepala Dinas Perhubungan',
+            'password' => Hash::make('password'),
+            'idSubstansi' => 1,
+        ]);
+
+        Pegawai::create([
+            'nip' => '987654321098765432',
+            'email' => 'email2@example.com',
+            'namaLengkap' => 'Siti Aminah',
+            'jabatan' => 'Kepala Dinas Pendidikan',
+            'password' => Hash::make('password'),
+            'idSubstansi' => 3,
+        ]);
 
         Absen::create([
             'jenisAbsen' => 'masuk',

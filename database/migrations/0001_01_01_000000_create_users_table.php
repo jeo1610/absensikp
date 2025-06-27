@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('namaLengkap');
             $table->string('jabatan');
-            $table->string('bidang');
             $table->string('password');
             $table->unsignedBigInteger('idSubstansi');
             $table->foreign('idSubstansi')->references('idSubstansi')->on('substansi');
