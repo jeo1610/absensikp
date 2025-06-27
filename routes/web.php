@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAbsensiController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DataAbsenController;
 use App\Http\Controllers\DataAdminController;
 use App\Http\Controllers\DataPegawaiController;
 use App\Http\Controllers\DataSubstansiController;
@@ -57,6 +58,14 @@ Route::middleware([CekLogin::class . ':admin'])->group(function () {
     Route::get('/admin/data-pegawai/edit/{id}', [DataPegawaiController::class, 'editpegawai']);
     Route::post('/admin/data-pegawai/update', [DataPegawaiController::class, 'updatepegawai']);
     Route::get('/admin/data-pegawai/delete/{id}', [DataPegawaiController::class, 'deletepegawai']);
+
+    // absen
+    Route::get('/admin/data-absen', [DataAbsenController::class, 'dataabsen']);
+    Route::get('/admin/data-absen/tambah', [DataAbsenController::class, 'tambahabsen']);
+    Route::post('/admin/data-absen/kirim', [DataAbsenController::class, 'kirimabsen']);
+    Route::get('/admin/data-absen/edit/{id}', [DataAbsenController::class, 'editabsen']);
+    Route::post('/admin/data-absen/update', [DataAbsenController::class, 'updateabsen']);
+    Route::get('/admin/data-absen/delete/{id}', [DataAbsenController::class, 'deleteabsen']);
 });
 
 // ====================

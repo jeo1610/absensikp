@@ -36,7 +36,7 @@
                     <thead class="table-primary text-center">
                         <tr>
                             <th style="width: 30%">Username</th>
-                            <th style="width: 20%">Aksi</th>
+                            <th style="width: 10%">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
