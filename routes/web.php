@@ -19,8 +19,8 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // Absensi
-Route::get('/absensi/qr-code', [AdminAbsensiController::class, 'qrcode'])->name('absensi.qr-code');
-Route::get('/absensi/qr-code-refresh', [AdminAbsensiController::class, 'qrCodeRefresh'])->name('absensi.qr-code.refresh');
+// Route::get('/absensi/qr-code', [AdminAbsensiController::class, 'qrcode'])->name('absensi.qr-code');
+// Route::get('/absensi/qr-code-refresh', [AdminAbsensiController::class, 'qrCodeRefresh'])->name('absensi.qr-code.refresh');
 
 // ====================
 // Admin Area (Hanya untuk Admin)
@@ -29,11 +29,12 @@ Route::middleware([CekLogin::class . ':admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/laporan-absensi', [AdminController::class, 'laporan'])->name('admin.laporan');
     Route::get('/admin/cetak-absensi', [AdminController::class, 'cetak'])->name('admin.cetak');
-    Route::get('/admin/qr-code', [AdminAbsensiController::class, 'qrcode'])->name('admin.qr-code');
-    Route::get('/admin/qr-code-refresh', [AdminAbsensiController::class, 'qrCodeRefresh'])->name('admin.qr-code.refresh');
-    Route::get('/absensi-masuk', [AdminAbsensiController::class, 'aktifkanAbsenMasuk'])->name('absensi.masuk.aktif');
-    Route::get('/absensi-keluar', [AdminAbsensiController::class, 'aktifkanAbsenKeluar'])->name('absensi.keluar.aktif');
-    Route::get('/reset-absensi', [AdminAbsensiController::class, 'resetAbsensi'])->name('absensi.reset');
+
+    // absensi
+    Route::get('/admin/qr-code', [AdminAbsensiController::class, 'qrcode']);
+    Route::get('/admin/qr-absensi/{jenis}/{id}', [AdminAbsensiController::class, 'tampilkanQrAbsensi']);
+    Route::get('/admin/qr-absensi/qr-code-refresh', [AdminAbsensiController::class, 'qrCodeRefresh']);
+    Route::get('/reset-absensi', [AdminAbsensiController::class, 'resetAbsensi']);
 
     // admin
     Route::get('/admin/data-admin', [DataAdminController::class, 'dataadmin']);

@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top" style="background-color: #0a3d62;">
     <div class="container">
         <!-- Brand -->
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="/admin/dashboard">
             <i class="fas fa-user-shield me-2"></i> Admin Panel
         </a>
 
