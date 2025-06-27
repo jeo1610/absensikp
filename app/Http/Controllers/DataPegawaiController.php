@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Melakukan;
 use App\Models\Pegawai;
 use App\Models\Substansi;
 use Illuminate\Http\RedirectResponse;
@@ -79,6 +80,10 @@ class DataPegawaiController extends Controller
 
     public function deletepegawai($id): RedirectResponse
     {
+        $melakukanCount = Melakukan::where('nip', $id)->count();
+        if ($melakukanCount > 0) {
+            return redirect('/admin/data-pegawai')->with('error', 'Data pegawai tidak bisa dihapus karena memiliki riwayat absensi.');
+        }
         Pegawai::where('nip', $id)->delete();
         return redirect('/admin/data-pegawai')->with('success', 'Data pegawai berhasil dihapus.');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pegawai;
 use App\Models\Substansi;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -50,6 +51,10 @@ class DataSubstansiController extends Controller
 
     public function deletesubstansi($id): RedirectResponse
     {
+        $pegawaiCount = Pegawai::where('idSubstansi', $id)->count();
+        if ($pegawaiCount > 0) {
+            return redirect('/admin/data-substansi')->with('error', 'Data substansi tidak bisa dihapus karena masih digunakan oleh data pegawai.');
+        }
         Substansi::where('idSubstansi', $id)->delete();
         return redirect('/admin/data-substansi')->with('success', 'Data substansi berhasil dihapus.');
     }
