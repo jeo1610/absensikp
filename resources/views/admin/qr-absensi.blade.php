@@ -7,22 +7,18 @@
 
     <div class="d-flex justify-content-center">
         <div class="qr-box text-center m-0 p-4 shadow bg-white rounded" style="max-width: 360px; width: 100%;">
-            {{-- Waktu update --}}
             <p class="text-muted small mb-3" id="last-updated">
                 Terakhir diperbarui: {{ date('H:i:s') }}
             </p>
 
-            {{-- QR Code --}}
             <div id="qr-code-wrapper" class="mb-3">
                 {!! QrCode::size(250)->generate($qrUrl) !!}
             </div>
 
-            {{-- Status --}}
             <p class="qr-text text-success mb-3" id="qr-label">
                 QR Code Absensi {{ ucfirst($absensi->jenisAbsen) }} Aktif
             </p>
 
-            {{-- Link QR --}}
             <div class="text-start">
                 <label class="fw-semibold text-primary mb-1">
                     <i class="fas fa-link me-1"></i>Link QR:

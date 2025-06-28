@@ -9,18 +9,10 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AdminAbsensiController extends Controller
 {
-    public function absensi()
-    {
-        $title = 'Absensi';
-        $absensiMasuk = Absen::find(1);
-        $absensiKeluar = Absen::find(2);
-        return view('absensi', compact('title', 'absensiMasuk', 'absensiKeluar'));
-    }
-
     public function qrcode()
     {
         $title = 'QR Code';
-        $absenlist = Absen::all(); // ambil semua kolom termasuk idAbsen
+        $absenlist = Absen::all();
         return view('/admin/qr-code', compact('title', 'absenlist'));
     }
 
