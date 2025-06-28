@@ -34,7 +34,7 @@ Route::middleware([CekLogin::class . ':admin'])->group(function () {
     Route::get('/admin/qr-code', [AdminAbsensiController::class, 'qrcode']);
     Route::get('/admin/qr-absensi/{jenis}/{id}', [AdminAbsensiController::class, 'tampilkanQrAbsensi']);
     Route::get('/admin/qr-absensi/qr-code-refresh', [AdminAbsensiController::class, 'qrCodeRefresh']);
-    Route::get('/reset-absensi', [AdminAbsensiController::class, 'resetAbsensi']);
+    Route::get('/admin/reset-absensi', [AdminAbsensiController::class, 'resetAbsensi']);
 
     // admin
     Route::get('/admin/data-admin', [DataAdminController::class, 'dataadmin']);

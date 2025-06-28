@@ -30,7 +30,7 @@
         @endforeach
 
         <div class="col">
-            <a href="/reset-absensi" class="text-decoration-none">
+            <a href="/admin/reset-absensi" class="text-decoration-none">
                 <div class="menu-card text-center h-100">
                     <i class="fas fa-sync-alt menu-icon"></i>
                     <div class="menu-title">Reset Absensi</div>
