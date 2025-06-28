@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function index()
     {
         $title = 'Dashboard Admin';
-        return view('admin.dashboard', compact('title'));
+        return view('/admin/dashboard', compact('title'));
     }
 
     // public function laporan(Request $request)

@@ -16,14 +16,14 @@ class DataPegawaiController extends Controller
     {
         $title = 'Data Pegawai';
         $pegawai = Pegawai::all();
-        return view('admin.data-pegawai', compact('title', 'pegawai'));
+        return view('/admin/data-pegawai', compact('title', 'pegawai'));
     }
 
     public function tambahpegawai()
     {
         $title = "Tambah Data Pegawai";
         $substansilist = Substansi::all();
-        return view('admin.tambah-data-pegawai', compact('title', 'substansilist'));
+        return view('/admin/tambah-data-pegawai', compact('title', 'substansilist'));
     }
 
     public function kirimpegawai(Request $request)
@@ -46,7 +46,7 @@ class DataPegawaiController extends Controller
         $title = "Edit Data Pegawai";
         $pegawai = Pegawai::find($id);
         $substansilist = Substansi::all();
-        return view('admin.edit-data-pegawai', compact('title', 'pegawai', 'substansilist'));
+        return view('/admin/edit-data-pegawai', compact('title', 'pegawai', 'substansilist'));
     }
 
     public function updatepegawai(Request $request)

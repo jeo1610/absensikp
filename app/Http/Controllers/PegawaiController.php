@@ -14,7 +14,7 @@ class PegawaiController extends Controller
     {
         $title = 'Dashboard Pegawai';
         $user = Session::get('user');
-        return view('pegawai.dashboard', compact('title', 'user'));
+        return view('/pegawai/dashboard', compact('title', 'user'));
     }
 
     public function riwayat($nip)
@@ -26,7 +26,7 @@ class PegawaiController extends Controller
             ->with('absensi')
             ->orderByDesc('created_at')
             ->get();
-        return view('pegawai.riwayat', compact('title', 'user', 'pegawai', 'absensi'));
+        return view('/pegawai/riwayat', compact('title', 'user', 'pegawai', 'absensi'));
     }
 
     // public function scanQr(Request $request)

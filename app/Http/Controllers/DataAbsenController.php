@@ -13,13 +13,13 @@ class DataAbsenController extends Controller
     {
         $title = 'Data Absen';
         $absen = Absen::all();
-        return view('admin.data-absen', compact('title', 'absen'));
+        return view('/admin/data-absen', compact('title', 'absen'));
     }
 
     public function tambahabsen()
     {
         $title = "Tambah Data Absen";
-        return view('admin.tambah-data-absen', compact('title'));
+        return view('/admin/tambah-data-absen', compact('title'));
     }
 
     public function kirimabsen(Request $request)
@@ -36,7 +36,7 @@ class DataAbsenController extends Controller
     {
         $title = "Edit Data Absen";
         $absen = Absen::find($id);
-        return view('admin.edit-data-absen', compact('title', 'absen'));
+        return view('/admin/edit-data-absen', compact('title', 'absen'));
     }
 
     public function updateabsen(Request $request)

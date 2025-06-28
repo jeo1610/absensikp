@@ -13,13 +13,13 @@ class DataAdminController extends Controller
     {
         $title = 'Data Admin';
         $admin = Admin::all();
-        return view('admin.data-admin', compact('title', 'admin'));
+        return view('/admin/data-admin', compact('title', 'admin'));
     }
 
     public function tambahadmin()
     {
         $title = "Tambah Data Admin";
-        return view('admin.tambah-data-admin', compact('title'));
+        return view('/admin/tambah-data-admin', compact('title'));
     }
 
     public function kirimadmin(Request $request)
@@ -37,7 +37,7 @@ class DataAdminController extends Controller
     {
         $title = "Edit Data Admin";
         $admin = Admin::find($id);
-        return view('admin.edit-data-admin', compact('title', 'admin'));
+        return view('/admin/edit-data-admin', compact('title', 'admin'));
     }
 
     public function updateadmin(Request $request)

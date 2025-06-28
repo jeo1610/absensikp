@@ -13,7 +13,7 @@ class LoginController extends Controller
     public function showLogin()
     {
         $title = 'Login';
-        return view('login', compact('title'));
+        return view('/login', compact('title'));
     }
 
     public function login(Request $request)

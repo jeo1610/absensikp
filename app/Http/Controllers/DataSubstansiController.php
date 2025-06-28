@@ -13,13 +13,13 @@ class DataSubstansiController extends Controller
     {
         $title = 'Data Substansi';
         $substansi = Substansi::all();
-        return view('admin.data-substansi', compact('title', 'substansi'));
+        return view('/admin/data-substansi', compact('title', 'substansi'));
     }
 
     public function tambahsubstansi()
     {
         $title = "Tambah Data Substansi";
-        return view('admin.tambah-data-substansi', compact('title'));
+        return view('/admin/tambah-data-substansi', compact('title'));
     }
 
     public function kirimsubstansi(Request $request)
@@ -35,7 +35,7 @@ class DataSubstansiController extends Controller
     {
         $title = "Edit Data Substansi";
         $substansi = Substansi::find($id);
-        return view('admin.edit-data-substansi', compact('title', 'substansi'));
+        return view('/admin/edit-data-substansi', compact('title', 'substansi'));
     }
 
     public function updatesubstansi(Request $request)
