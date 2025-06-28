@@ -21,13 +21,12 @@ class AdminAbsensiController extends Controller
     {
         $title = 'QR Code';
         $absenlist = Absen::all(); // ambil semua kolom termasuk idAbsen
-        return view('admin.qr-code', compact('title', 'absenlist'));
+        return view('/admin/qr-code', compact('title', 'absenlist'));
     }
 
     public function qrCodeRefresh()
     {
         $absensi = Absen::where('statusQr', true)->first();
-
         if (!$absensi) {
             return response()->json([
                 'html' => '<p class="text-danger fw-bold">QR Code tidak tersedia</p>',
@@ -35,19 +34,17 @@ class AdminAbsensiController extends Controller
                 'color' => 'danger',
             ]);
         }
-
-        $uniqueCode = Str::uuid();
-        $url = url('/pegawai/scan-qr?idAbsensi=' . $absensi->idAbsen . '&code=' . $uniqueCode);
-
-        $svg = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(250)->generate($url);
+        $uniqueCode = Str::uuid()->toString();
+        $url = url("/pegawai/proses-absensi?code={$uniqueCode}&idAbsensi={$absensi->idAbsen}&nip=__NIP__");
+        $svg = QrCode::format('svg')->size(250)->generate($url);
         $base64 = base64_encode($svg);
         $html = "<img src='data:image/svg+xml;base64,{$base64}' alt='QR Code' width='250' height='250' />";
-
         return response()->json([
             'html' => $html,
             'label' => 'QR Code Absensi ' . ucfirst($absensi->jenisAbsen) . ' Aktif',
             'color' => 'success',
-            'qrUrl' => $url
+            'qrUrl' => $url,
+            'uniqueCode' => $uniqueCode
         ]);
     }
 
@@ -63,7 +60,7 @@ class AdminAbsensiController extends Controller
         Absen::query()->update(['statusQr' => false]);
         $absensi->update(['statusQr' => true]);
         $qrUrl = url('/pegawai/scan-qr?idAbsensi=' . $absensi->idAbsen);
-        return view('admin.qr-absensi', [
+        return view('/admin/qr-absensi', [
             'absensi' => $absensi,
             'qrUrl' => $qrUrl
         ], compact('title'));

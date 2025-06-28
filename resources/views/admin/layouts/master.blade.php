@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    @include('admin.layouts.navbaradmin')
+    @include('admin/layouts/navbaradmin')
 
     <div class="container py-4">
         @yield('content')

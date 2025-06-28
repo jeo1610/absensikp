@@ -1,6 +1,6 @@
 @extends('pegawai.layouts.master')
 
-@section('title', 'Dashboard Pegawai')
+@section('title', 'Dashboard Pegawai')z
 
 @section('content')
 

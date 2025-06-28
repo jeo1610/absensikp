@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Pegawai Page')</title>
+    <title>{{ $title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap 5 -->
@@ -19,11 +19,10 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/css/pegawai-style.css">
 
-    @stack('styles')
 </head>
 
 <body>
-    @include('pegawai.layouts.navbarpegawai')
+    @include('pegawai/layouts/navbarpegawai')
 
     <div class="container py-4">
         @yield('content')

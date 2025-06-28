@@ -7,7 +7,7 @@
 
     <div class="container">
         <!-- Brand -->
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="/pegawai/dashboard">
             <i class="fas fa-user-clock me-2"></i>
             {{ Str::limit($user->namaLengkap, 20) }}
         </a>

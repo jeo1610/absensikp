@@ -11,7 +11,7 @@
             </div>
 
             <div class="mb-3">
-                <a href="{{ route('pegawai.dashboard') }}" class="btn btn-secondary">
+                <a href="/pegawai/dashboard" class="btn btn-secondary">
                     <i class="fas fa-arrow-left me-1"></i>Kembali ke Dashboard
                 </a>
             </div>

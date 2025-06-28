@@ -73,8 +73,8 @@ Route::middleware([CekLogin::class . ':admin'])->group(function () {
 // Pegawai Area (Hanya untuk Pegawai)
 // ====================
 Route::middleware([CekLogin::class . ':pegawai'])->group(function () {
-    Route::get('/pegawai/dashboard', [PegawaiController::class, 'index'])->name('pegawai.dashboard');
-    Route::get('/pegawai/riwayat-absensi/{id}', [PegawaiController::class, 'riwayat'])->name('pegawai.riwayat');
-    Route::get('/pegawai/scan-qr', [PegawaiController::class, 'scanQr'])->name('pegawai.scan.qr');
-    Route::get('/pegawai/proses-absensi', [PegawaiController::class, 'prosesAbsensi'])->name('pegawai.proses-absensi');
+    Route::get('/pegawai/dashboard', [PegawaiController::class, 'index']);
+    Route::get('/pegawai/riwayat-absensi/{id}', [PegawaiController::class, 'riwayat']);
+    Route::get('/pegawai/scan-qr', [PegawaiController::class, 'scanQr']);
+    Route::get('/pegawai/proses-absensi', [PegawaiController::class, 'prosesAbsensi']);
 });
