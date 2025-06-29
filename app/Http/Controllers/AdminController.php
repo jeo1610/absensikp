@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Models\Absensi;
+use App\Models\Absen;
 use App\Models\Admin;
 use App\Models\Melakukan;
 use App\Models\Pegawai;
+use App\Models\Substansi;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -21,51 +22,64 @@ class AdminController extends Controller
         return view('/admin/dashboard', compact('title'));
     }
 
-    // public function laporan(Request $request)
-    // {
-    //     $title = 'Laporan Absensi';
+    public function laporan(Request $request)
+    {
+        $title = 'Laporan Absensi';
 
-    //     $query = Melakukan::with(['pegawai', 'absensi'])->orderBy('created_at', 'desc');
+        $query = Melakukan::with(['pegawai.substansi', 'absen'])->orderBy('created_at', 'desc');
 
-    //     if ($request->filled('tanggal_mulai') && $request->filled('tanggal_selesai')) {
-    //         $start = Carbon::parse($request->tanggal_mulai)->startOfDay();
-    //         $end = Carbon::parse($request->tanggal_selesai)->endOfDay();
-    //         $query->whereBetween('created_at', [$start, $end]);
-    //     }
+        if ($request->filled('tanggal_mulai') && $request->filled('tanggal_selesai')) {
+            $start = Carbon::parse($request->tanggal_mulai)->startOfDay();
+            $end = Carbon::parse($request->tanggal_selesai)->endOfDay();
+            $query->whereBetween('created_at', [$start, $end]);
+        }
 
-    //     if ($request->filled('jenis_absensi')) {
-    //         $query->whereHas('absensi', function ($q) use ($request) {
-    //             $q->where('jenisAbsensi', $request->jenis_absensi);
-    //         });
-    //     }
+        if ($request->filled('jenisAbsen')) {
+            $query->whereHas('absen', function ($q) use ($request) {
+                $q->where('jenisAbsen', $request->jenisAbsen);
+            });
+        }
 
-    //     $laporan = $query->get();
+        if ($request->filled('idSubstansi')) {
+            $query->whereHas('pegawai', function ($q) use ($request) {
+                $q->where('idSubstansi', $request->idSubstansi);
+            });
+        }
 
-    //     // Ambil daftar jenis absensi unik untuk dropdown
-    //     $listJenisAbsensi = Absensi::select('jenisAbsensi')->distinct()->pluck('jenisAbsensi');
+        $laporan = $query->get();
 
-    //     return view('admin.laporan', compact('title', 'laporan', 'listJenisAbsensi'));
-    // }
+        $listJenisAbsen = Absen::select('jenisAbsen')->distinct()->pluck('jenisAbsen');
+        $listSubstansi = Substansi::orderBy('namaSubstansi')->get();
 
-    // public function cetak(Request $request)
-    // {
-    //     $title = 'Laporan Absensi';
-    //     $query = Melakukan::with(['pegawai', 'absensi'])->orderBy('created_at', 'desc');
+        return view('admin.laporan', compact('title', 'laporan', 'listJenisAbsen', 'listSubstansi'));
+    }
 
-    //     if ($request->filled('tanggal_mulai') && $request->filled('tanggal_selesai')) {
-    //         $start = Carbon::parse($request->tanggal_mulai)->startOfDay();
-    //         $end = Carbon::parse($request->tanggal_selesai)->endOfDay();
-    //         $query->whereBetween('created_at', [$start, $end]);
-    //     }
+    public function cetak(Request $request)
+    {
+        $title = 'Laporan Absensi';
+        $query = Melakukan::with(['pegawai.substansi', 'absen'])->orderBy('created_at', 'desc');
 
-    //     if ($request->filled('jenis_absensi')) {
-    //         $query->whereHas('absensi', function ($q) use ($request) {
-    //             $q->where('jenisAbsensi', $request->jenis_absensi);
-    //         });
-    //     }
+        if ($request->filled('tanggal_mulai') && $request->filled('tanggal_selesai')) {
+            $start = Carbon::parse($request->tanggal_mulai)->startOfDay();
+            $end = Carbon::parse($request->tanggal_selesai)->endOfDay();
+            $query->whereBetween('created_at', [$start, $end]);
+        }
 
-    //     $laporan = $query->get();
-    //     $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.laporan-pdf', compact('title', 'laporan'));
-    //     return $pdf->stream('laporan-absensi.pdf');
-    // }
+        if ($request->filled('jenisAbsen')) {
+            $query->whereHas('absen', function ($q) use ($request) {
+                $q->where('jenisAbsen', $request->jenisAbsen);
+            });
+        }
+
+        if ($request->filled('idSubstansi')) {
+            $query->whereHas('pegawai', function ($q) use ($request) {
+                $q->where('idSubstansi', $request->idSubstansi);
+            });
+        }
+
+        $laporan = $query->get();
+
+        $pdf = Pdf::loadView('admin.laporan-pdf', compact('title', 'laporan'));
+        return $pdf->stream('laporan-absensi.pdf');
+    }
 }

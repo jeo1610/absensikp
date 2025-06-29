@@ -22,9 +22,9 @@ Route::get('/logout', [LoginController::class, 'logout']);
 // Admin Area (Hanya untuk Admin)
 // ====================
 Route::middleware([CekLogin::class . ':admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/laporan-absensi', [AdminController::class, 'laporan'])->name('admin.laporan');
-    Route::get('/admin/cetak-absensi', [AdminController::class, 'cetak'])->name('admin.cetak');
+    Route::get('/admin/dashboard', [AdminController::class, 'index']);
+    Route::get('/admin/laporan-absensi', [AdminController::class, 'laporan']);
+    Route::get('/admin/cetak-absensi', [AdminController::class, 'cetak']);
 
     // absensi
     Route::get('/admin/qr-code', [AdminAbsensiController::class, 'qrcode']);

@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: DejaVu Sans, sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.5;
             color: #000;
             padding: 20px;
@@ -15,43 +15,56 @@
 
         h2 {
             text-align: center;
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 5px;
+            font-size: 16px;
             color: #333;
         }
 
         .info {
-            margin-top: 5px;
-            font-size: 11px;
-            color: #666;
             text-align: center;
+            font-size: 10px;
+            color: #555;
+            margin-bottom: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         th,
         td {
-            border: 1px solid #999;
-            padding: 8px 6px;
-            text-align: center;
+            border: 1px solid #ccc;
+            padding: 6px;
+            vertical-align: middle;
         }
 
         th {
-            background-color: #e9ecef;
+            background-color: #f1f5f9;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        td {
+            font-size: 10.5px;
         }
 
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
 
-        tr:hover {
-            background-color: #f1f1f1;
+        .text-left {
+            text-align: left;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-muted {
+            color: #888;
         }
     </style>
 </head>
@@ -67,8 +80,8 @@
                 <th style="width: 15%">NIP</th>
                 <th style="width: 20%">Nama Lengkap</th>
                 <th style="width: 15%">Jabatan</th>
-                <th style="width: 15%">Bidang</th>
-                <th style="width: 10%">Jenis Absensi</th>
+                <th style="width: 15%">Substansi</th>
+                <th style="width: 10%">Jenis Absen</th>
                 <th style="width: 10%">Tanggal</th>
                 <th style="width: 10%">Jam</th>
             </tr>
@@ -76,18 +89,18 @@
         <tbody>
             @forelse ($laporan as $i => $data)
                 <tr>
-                    <td>{{ $i + 1 }}</td>
-                    <td>{{ $data->pegawai->nip ?? '-' }}</td>
-                    <td style="text-align: left;">{{ $data->pegawai->namaLengkap ?? '-' }}</td>
-                    <td style="text-align: left;">{{ $data->pegawai->jabatan ?? '-' }}</td>
-                    <td style="text-align: left;">{{ $data->pegawai->bidang ?? '-' }}</td>
-                    <td>{{ $data->absensi->jenisAbsensi ?? '-' }}</td>
-                    <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($data->created_at)->format('H:i:s') }}</td>
+                    <td class="text-center">{{ $i + 1 }}</td>
+                    <td class="text-center">{{ $data->pegawai->nip ?? '-' }}</td>
+                    <td class="text-left">{{ $data->pegawai->namaLengkap ?? '-' }}</td>
+                    <td class="text-left">{{ $data->pegawai->jabatan ?? '-' }}</td>
+                    <td class="text-left">{{ $data->pegawai->substansi->namaSubstansi ?? '-' }}</td>
+                    <td class="text-center">{{ $data->absen->jenisAbsen ?? '-' }}</td>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</td>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($data->created_at)->format('H:i:s') }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">Tidak ada data tersedia</td>
+                    <td colspan="8" class="text-center text-muted">Tidak ada data absensi tersedia</td>
                 </tr>
             @endforelse
         </tbody>
