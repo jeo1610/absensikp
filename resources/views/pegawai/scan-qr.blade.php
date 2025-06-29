@@ -1,92 +1,131 @@
+@php
+    $user = session('user');
+@endphp
+
 @extends('pegawai.layouts.master')
 
-@section('title', $title)
+@section('title', 'Scan QR Code')
 
 @push('styles')
     <style>
+        :root {
+            --blue-dark: #0a3d62;
+            --blue-light: #74b9ff;
+            --text-dark: #2c3e50;
+            --white: #ffffff;
+        }
+
+        body {
+            background: linear-gradient(to bottom right, var(--blue-light), #dbeeff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .dashboard-title {
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .qr-container {
+            max-width: 400px;
+            width: 100%;
+            background-color: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+        }
+
         .qr-box {
             width: 100%;
-            max-width: 320px;
-            margin: auto;
-            padding: 0;
-            border: 2px dashed var(--blue-dark);
-            border-radius: 12px;
-            background-color: #fff;
+            padding-top: 100%;
             position: relative;
-            aspect-ratio: 1 / 1;
+            border: 2px solid var(--blue-dark);
+            border-radius: 1rem;
+            background-color: #000;
+            margin-bottom: 1.5rem;
             overflow: hidden;
         }
 
         #qr-reader {
-            width: 100%;
-            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
             object-fit: cover;
         }
 
-        .btn-custom {
-            min-width: 140px;
-            padding: 10px 20px;
-            font-weight: 500;
+        .info-user {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .info-user p {
+            margin: 0.3rem 0;
+        }
+
+        .card-subtitle {
             font-size: 1rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            background-color: var(--blue-dark);
+            border-color: var(--blue-dark);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--blue-light);
+            border-color: var(--blue-light);
+            color: #fff;
         }
 
         @media (max-width: 576px) {
-            .qr-box {
-                max-width: 280px;
-            }
-
-            .btn-custom {
-                font-size: 0.9rem;
-                min-width: 120px;
-            }
-
             .dashboard-title {
                 font-size: 1.5rem;
+            }
+
+            .qr-container {
+                padding: 1.25rem 1rem;
             }
         }
     </style>
 @endpush
 
-
 @section('content')
-    <h2 class="dashboard-title text-center my-4">Scan QR Code untuk Absensi</h2>
+    <h2 class="dashboard-title">Scan QR Code untuk Absensi</h2>
 
-    {{-- Spinner --}}
-    <div id="loading" class="text-center mb-4" style="display: none;">
-        <div class="spinner-border text-primary" role="status"></div>
-        <p class="mt-2">Mengaktifkan kamera...</p>
-    </div>
+    <div class="d-flex justify-content-center">
+        <div class="qr-container text-center">
+            <p class="text-muted small mb-3">
+                Pastikan kamera aktif dan QR berada dalam kotak pemindaian
+            </p>
 
-    {{-- QR Reader --}}
-    <div class="d-flex justify-content-center mb-4">
-        <div class="qr-box shadow" id="qr-container">
-            <div id="qr-reader"></div>
-        </div>
-    </div>
+            {{-- QR Scanner --}}
+            <div class="qr-box">
+                <div id="qr-reader"></div>
+            </div>
 
-    {{-- Tombol --}}
-    <div class="text-center mb-4">
-        <button id="start-camera" class="btn btn-primary me-2">Aktifkan Kamera</button>
-        <button id="stop-camera" class="btn btn-danger" style="display: none;">Matikan Kamera</button>
-    </div>
-
-    {{-- Informasi --}}
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="menu-card text-center shadow p-4 rounded">
-                <i class="fas fa-qrcode menu-icon fa-3x text-primary mb-3"></i>
-                <div class="menu-title fs-5 mb-2">
-                    {{ $idAbsensi == 1 ? 'Absensi Masuk' : 'Absensi Keluar' }}
+            {{-- Informasi Pegawai --}}
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center info-user">
+                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user-clock me-1"></i>Informasi Pegawai</h6>
+                    <p><strong>Nama:</strong> {{ $user->namaLengkap }}</p>
+                    <p><strong>NIP:</strong> {{ $user->nip }}</p>
                 </div>
-                <p class="mb-1"><strong>NIP:</strong> {{ $nip }}</p>
-                <p class="mb-0">
-                    <strong>Status QR:</strong>
-                    <span class="{{ \App\Models\Absensi::find($idAbsensi)?->status_qr ? 'text-success' : 'text-danger' }}">
-                        {{ \App\Models\Absensi::find($idAbsensi)?->status_qr ? 'Aktif' : 'Tidak Aktif' }}
-                    </span>
-                </p>
             </div>
         </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/pegawai/dashboard" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Kembali
+        </a>
     </div>
 @endsection
 
@@ -94,62 +133,33 @@
     <script src="/js/html5-qrcode.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const startBtn = document.getElementById("start-camera");
-            const stopBtn = document.getElementById("stop-camera");
-            const loading = document.getElementById("loading");
+            const nip = "{{ $user->nip }}";
+            const qrScanner = new Html5Qrcode("qr-reader");
 
-            let qrReader = null;
-
-            startBtn.addEventListener("click", function() {
-                startBtn.disabled = true;
-                stopBtn.style.display = "inline-block";
-                loading.style.display = "block";
-
-                if (!qrReader) {
-                    qrReader = new Html5Qrcode("qr-reader");
-                }
-
-                qrReader.start({
-                        facingMode: "environment"
-                    }, {
-                        fps: 10,
-                        qrbox: function(viewfinderWidth, viewfinderHeight) {
-                            const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
-                            return {
-                                width: minEdge * 0.8,
-                                height: minEdge * 0.8
-                            };
-                        },
-                        aspectRatio: 1.0
-                    },
-                    function(decodedText) {
-                        qrReader.stop().then(() => {
-                            const url =
-                                `/pegawai/proses-absensi?code=${encodeURIComponent(decodedText)}&idAbsensi={{ $idAbsensi }}&nip={{ $nip }}`;
-                            window.location.href = url;
-                        });
-                    },
-                    function(errorMessage) {
-                        // Bisa diabaikan
+            qrScanner.start({
+                    facingMode: "environment"
+                }, {
+                    fps: 10,
+                    qrbox: function(viewfinderWidth, viewfinderHeight) {
+                        const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
+                        return {
+                            width: minEdge * 0.8,
+                            height: minEdge * 0.8,
+                        };
                     }
-                ).then(() => {
-                    loading.style.display = "none";
-                }).catch(err => {
-                    alert("Tidak bisa mengakses kamera: " + err);
-                    startBtn.disabled = false;
-                    stopBtn.style.display = "none";
-                    loading.style.display = "none";
-                });
-            });
-
-            stopBtn.addEventListener("click", function() {
-                if (qrReader) {
-                    qrReader.stop().then(() => {
-                        qrReader.clear();
-                        startBtn.disabled = false;
-                        stopBtn.style.display = "none";
+                },
+                function(decodedText) {
+                    const url = decodedText.replace("nip=__NIP__", "nip=" + nip);
+                    qrScanner.stop().then(() => {
+                        window.location.href = url;
                     });
+                },
+                function(errorMessage) {
+                    // console.error(errorMessage);
                 }
+            ).catch(err => {
+                console.error("Kamera gagal dijalankan:", err);
+                alert("Gagal mengakses kamera: " + err);
             });
         });
     </script>

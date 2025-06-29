@@ -16,9 +16,9 @@ class Melakukan extends Model
         'nip',
         'idAbsen',
     ];
-    public function absensi()
+    public function absen()
     {
-        return $this->belongsTo(Absen::class, 'idAbsen', 'idAbsensi');
+        return $this->belongsTo(Absen::class, 'idAbsen', 'idAbsen');
     }
     public function pegawai()
     {

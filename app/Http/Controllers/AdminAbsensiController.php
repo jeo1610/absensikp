@@ -27,7 +27,7 @@ class AdminAbsensiController extends Controller
             ]);
         }
         $uniqueCode = Str::uuid()->toString();
-        $url = url("/pegawai/proses-absensi?code={$uniqueCode}&idAbsensi={$absensi->idAbsen}&nip=__NIP__");
+        $url = url("/pegawai/proses-absensi?code={$uniqueCode}&idAbsen={$absensi->idAbsen}&nip=__NIP__");
         $svg = QrCode::format('svg')->size(250)->generate($url);
         $base64 = base64_encode($svg);
         $html = "<img src='data:image/svg+xml;base64,{$base64}' alt='QR Code' width='250' height='250' />";
@@ -51,7 +51,7 @@ class AdminAbsensiController extends Controller
         }
         Absen::query()->update(['statusQr' => false]);
         $absensi->update(['statusQr' => true]);
-        $qrUrl = url('/pegawai/scan-qr?idAbsensi=' . $absensi->idAbsen);
+        $qrUrl = url('/pegawai/scan-qr?idAbsen=' . $absensi->idAbsen);
         return view('/admin/qr-absensi', [
             'absensi' => $absensi,
             'qrUrl' => $qrUrl

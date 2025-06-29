@@ -1,7 +1,5 @@
 @extends('pegawai.layouts.master')
 
-@section('title', $title)
-
 @section('content')
     <div class="container my-5">
         <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
@@ -26,13 +24,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($absensi as $row)
+                        @forelse ($absen as $row)
                             <tr>
                                 <td class="text-center fw-medium">
                                     {{ \Carbon\Carbon::parse($row->created_at)->format('d M Y') }}
                                 </td>
                                 <td class="text-center text-capitalize">
-                                    {{ $row->absensi->jenisAbsensi }}
+                                    {{ $row->absen->jenisAbsen }}
                                 </td>
                                 <td class="text-center">
                                     {{ \Carbon\Carbon::parse($row->created_at)->format('H:i:s') }}

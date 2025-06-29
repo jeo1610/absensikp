@@ -1,33 +1,39 @@
+@php
+    $user = session('user');
+@endphp
+
 @extends('pegawai.layouts.master')
 
-@section('title', 'Dashboard Pegawai')z
-
 @section('content')
+    <h2 class="dashboard-title">Selamat Datang, {{ Str::limit($user->namaLengkap, 20) }}!</h2>
 
-    <h2 class="dashboard-title">Silakan Pilih Jenis Absensi</h2>
 
-    <div class="row g-4">
-        <!-- Absen Masuk -->
-        <div class="col-md-4">
-            <a href="{{ route('pegawai.scan.qr', ['idAbsensi' => 1, 'nip' => $user->nip]) }}" class="text-decoration-none">
-                <div class="menu-card text-center">
-                    <i class="fas fa-sign-in-alt menu-icon"></i>
-                    <div class="menu-title">Absen Masuk</div>
-                </div>
-            </a>
-        </div>
+    <div class="text-center mb-4">
+        @if (session('error'))
+            <div class="alert alert-danger text-center mt-3 mb-0 rounded">
+                {{ session('error') }}
+            </div>
+        @endif
 
-        <!-- Absen Keluar -->
-        <div class="col-md-4">
-            <a href="{{ route('pegawai.scan.qr', ['idAbsensi' => 2, 'nip' => $user->nip]) }}" class="text-decoration-none">
-                <div class="menu-card text-center">
-                    <i class="fas fa-sign-out-alt menu-icon"></i>
-                    <div class="menu-title">Absen Keluar</div>
-                </div>
-            </a>
-        </div>
+        @if (session('success'))
+            <div class="alert alert-success text-center mt-3 mb-0 rounded">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
 
-        <!-- Riwayat -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center">
+        @foreach ($absenlist as $absen)
+            <div class="col">
+                <a href="/pegawai/scan-qr" class="text-decoration-none">
+                    <div class="menu-card text-center h-100">
+                        <i class="fas fa-qrcode menu-icon"></i>
+                        <div class="menu-title text-capitalize">QR {{ $absen->jenisAbsen }}</div>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+
         <div class="col-md-4">
             <a href="/pegawai/riwayat-absensi/{{ $user->nip }}" class="text-decoration-none">
                 <div class="menu-card text-center">
@@ -36,5 +42,4 @@
                 </div>
             </a>
         </div>
-    </div>
-@endsection
+    @endsection

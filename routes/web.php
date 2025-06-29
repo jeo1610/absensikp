@@ -18,10 +18,6 @@ Route::post('/login', [LoginController::class, 'login']);
 // Logout
 Route::get('/logout', [LoginController::class, 'logout']);
 
-// Absensi
-// Route::get('/absensi/qr-code', [AdminAbsensiController::class, 'qrcode'])->name('absensi.qr-code');
-// Route::get('/absensi/qr-code-refresh', [AdminAbsensiController::class, 'qrCodeRefresh'])->name('absensi.qr-code.refresh');
-
 // ====================
 // Admin Area (Hanya untuk Admin)
 // ====================
