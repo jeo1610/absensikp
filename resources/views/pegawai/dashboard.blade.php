@@ -23,7 +23,7 @@
     </div>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center">
-        @foreach ($absenlist as $absen)
+        @forelse ($absenlist as $absen)
             <div class="col">
                 <a href="/pegawai/scan-qr" class="text-decoration-none">
                     <div class="menu-card text-center h-100">
@@ -32,7 +32,11 @@
                     </div>
                 </a>
             </div>
-        @endforeach
+        @empty
+            <div class="col-12 text-center text-muted mt-4">
+                <p>Tidak ada jenis absensi tersedia saat ini.<br>Silakan hubungi administrator</p>
+            </div>
+        @endforelse
 
         <div class="col-md-4">
             <a href="/pegawai/riwayat-absensi/{{ $user->nip }}" class="text-decoration-none">
