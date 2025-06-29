@@ -35,7 +35,7 @@ class PegawaiController extends Controller
     {
         $title = 'Scan QR Code';
         $nip = session('user.nip');
-        return view('pegawai.scan-qr', compact('title', 'nip'));
+        return view('/pegawai/scan-qr', compact('title', 'nip'));
     }
 
 
